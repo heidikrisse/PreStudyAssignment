@@ -1,10 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <fstream> // for file input/output operations
 
 using namespace std;
 
 int main() {
+    // variable for the number of integers (from the file)
     int n;
     cout << "Enter the number of integers: ";
     cin >> n;
@@ -12,10 +14,13 @@ int main() {
     // vector to hold the numbers (size n)
     // vector is chosen because the size of the list is not known beforehand before the userś input
     vector<int> numbers(n);
+
+    // open the file
+    ifstream file("numbers.txt");
     for (int i = 0; i < n; i++) {
-        cout << "Enter " << i + 1 << ". integer: ";
-        cin >> numbers[i];
+        file >> numbers[i];
     }
+    file.close();
 
     int sum = 0;
     int min_value = numbers[0];
@@ -30,6 +35,7 @@ int main() {
         if (numbers[i] > max_value) {
             max_value = numbers[i];
         }
+        // initialize a count for the number of times the value appears in the array
         int count = 0;
         for (int j = 0; j < n; j++) {
             if (numbers[j] == numbers[i]) {
