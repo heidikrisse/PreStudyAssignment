@@ -50,12 +50,12 @@ int main() {
     double average = {double(sum) / double(n)};
     int difference = {max_value - min_value};
 
-    cout << "The sum of the integers in the list: " << sum << endl;
-    cout << "The average of the integers in the list: " << average << endl;
-    cout << "The minimum value in the list: " << min_value << endl;
-    cout << "The maximum value in the list: " << max_value << endl;
-    cout << "The most frequent value in the list: " << mode_value << endl;
-    cout << "Difference between the min and max of the list: " << difference << endl;
+    cout << "The sum of the integers in the list: " << sum << '\n';
+    cout << "The average of the integers in the list: " << average << '\n';
+    cout << "The minimum value in the list: " << min_value << '\n';
+    cout << "The maximum value in the list: " << max_value << '\n';
+    cout << "The most frequent value in the list: " << mode_value << '\n';
+    cout << "Difference between the min and max of the list: " << difference << '\n';
 
     return 0;
 }
