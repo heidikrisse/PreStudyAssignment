@@ -26,7 +26,7 @@ vector<int> readNumbersFromFile(const string &filename, unsigned int n)
 int calculateSum(const vector<int> &numbers)
 {
     int sum{0};
-    // // Iterate over each element in the vector
+    // Iterate over each element in the vector
     for (int num : numbers)
     {
         sum += num;
@@ -97,17 +97,12 @@ int main()
 
     vector<int> numbers{readNumbersFromFile("numbers.txt", n)};
 
-    int sum{calculateSum(numbers)};
-    int min_value{findMinimum(numbers)};
-    int max_value{findMaximum(numbers)};
-    int mode{findMode(numbers)};
-
-    cout << "The sum of the integers in the list: " << sum << '\n';
-    cout << "The average of the integers in the list: " << double(sum) / numbers.size() << '\n';
-    cout << "The minimum value in the list: " << min_value << '\n';
-    cout << "The maximum value in the list: " << max_value << '\n';
-    cout << "The most frequent value in the list: " << mode << '\n';
-    cout << "Difference between the min and max of the list: " << max_value - min_value << '\n';
+    cout << "The sum of the integers in the list: " << calculateSum(numbers) << '\n';
+    cout << "The average of the integers in the list: " << double(calculateSum(numbers)) / numbers.size() << '\n';
+    cout << "The minimum value in the list: " << findMinimum(numbers) << '\n';
+    cout << "The maximum value in the list: " << findMaximum(numbers) << '\n';
+    cout << "The most frequent value in the list: " << findMode(numbers) << '\n';
+    cout << "Difference between the min and max of the list: " << findMaximum(numbers) - findMinimum(numbers) << '\n';
 
     return 0;
 }
