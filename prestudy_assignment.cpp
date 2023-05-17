@@ -2,16 +2,14 @@
 #include <vector>
 #include <fstream> // for file input/output operations
 
-using namespace std;
-
 // Function to read numbers from a file and return them as a vector
 // 'filename' is a reference to a constant string object, & operator takes the address of the filename
 // and can access the original string object (numbers.txt) without making a copy of it.
-vector<int> readNumbersFromFile(const string &filename, unsigned int n)
+std::vector<int> readNumbersFromFile(const std::string &filename, unsigned int n)
 {
-    vector<int> numbers(n);
+    std::vector<int> numbers(n);
 
-    ifstream file(filename);
+    std::ifstream file(filename);
     for (unsigned int i{0}; i < n; i++)
     {
         file >> numbers[i];
@@ -23,7 +21,7 @@ vector<int> readNumbersFromFile(const string &filename, unsigned int n)
 
 // Function to calculate the sum of numbers in a vector
 // & operator takes the address of the vector numbers
-int calculateSum(const vector<int> &numbers)
+int calculateSum(const std::vector<int> &numbers)
 {
     int sum{0};
     // Iterate over each element in the vector
@@ -35,7 +33,7 @@ int calculateSum(const vector<int> &numbers)
 }
 
 // Function to find the minimum value in a vector
-int findMinimum(const vector<int> &numbers)
+int findMinimum(const std::vector<int> &numbers)
 {
     int min_value{numbers[0]};
     for (unsigned int i{1}; i < numbers.size(); i++)
@@ -49,7 +47,7 @@ int findMinimum(const vector<int> &numbers)
 }
 
 // Function to find the maximum value in a vector
-int findMaximum(const vector<int> &numbers)
+int findMaximum(const std::vector<int> &numbers)
 {
     int max_value{numbers[0]};
     for (size_t i{1}; i < numbers.size(); i++)
@@ -63,7 +61,7 @@ int findMaximum(const vector<int> &numbers)
 }
 
 // Function to find the mode value in a vector
-int findMode(const vector<int> &numbers)
+int findMode(const std::vector<int> &numbers)
 {
     int mode_value{numbers[0]};
     int mode_count{1};
@@ -90,23 +88,23 @@ int findMode(const vector<int> &numbers)
 }
 
 // Function to print the results
-void printResults(const vector<int> &numbers)
+void printResults(const std::vector<int> &numbers)
 {
-    cout << "The sum of the integers in the list: " << calculateSum(numbers) << '\n';
-    cout << "The average of the integers in the list: " << double(calculateSum(numbers)) / numbers.size() << '\n';
-    cout << "The minimum value in the list: " << findMinimum(numbers) << '\n';
-    cout << "The maximum value in the list: " << findMaximum(numbers) << '\n';
-    cout << "The most frequent value in the list: " << findMode(numbers) << '\n';
-    cout << "Difference between the min and max of the list: " << findMaximum(numbers) - findMinimum(numbers) << '\n';
+    std::cout << "The sum of the integers in the list: " << calculateSum(numbers) << '\n';
+    std::cout << "The average of the integers in the list: " << double(calculateSum(numbers)) / numbers.size() << '\n';
+    std::cout << "The minimum value in the list: " << findMinimum(numbers) << '\n';
+    std::cout << "The maximum value in the list: " << findMaximum(numbers) << '\n';
+    std::cout << "The most frequent value in the list: " << findMode(numbers) << '\n';
+    std::cout << "Difference between the min and max of the list: " << findMaximum(numbers) - findMinimum(numbers) << '\n';
 }
 
 int main()
 {
-    cout << "Enter the number of integers: ";
+    std::cout << "Enter the number of integers: ";
     unsigned int n;
-    cin >> n;
+    std::cin >> n;
 
-    vector<int> numbers{readNumbersFromFile("numbers.txt", n)};
+    std::vector<int> numbers{readNumbersFromFile("numbers.txt", n)};
 
     printResults(numbers);
 
