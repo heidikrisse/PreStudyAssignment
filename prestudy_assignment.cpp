@@ -89,6 +89,17 @@ int findMode(const vector<int> &numbers)
     return mode_value;
 }
 
+// Function to print the results
+void printResults(const vector<int> &numbers)
+{
+    cout << "The sum of the integers in the list: " << calculateSum(numbers) << '\n';
+    cout << "The average of the integers in the list: " << double(calculateSum(numbers)) / numbers.size() << '\n';
+    cout << "The minimum value in the list: " << findMinimum(numbers) << '\n';
+    cout << "The maximum value in the list: " << findMaximum(numbers) << '\n';
+    cout << "The most frequent value in the list: " << findMode(numbers) << '\n';
+    cout << "Difference between the min and max of the list: " << findMaximum(numbers) - findMinimum(numbers) << '\n';
+}
+
 int main()
 {
     cout << "Enter the number of integers: ";
@@ -97,12 +108,7 @@ int main()
 
     vector<int> numbers{readNumbersFromFile("numbers.txt", n)};
 
-    cout << "The sum of the integers in the list: " << calculateSum(numbers) << '\n';
-    cout << "The average of the integers in the list: " << double(calculateSum(numbers)) / numbers.size() << '\n';
-    cout << "The minimum value in the list: " << findMinimum(numbers) << '\n';
-    cout << "The maximum value in the list: " << findMaximum(numbers) << '\n';
-    cout << "The most frequent value in the list: " << findMode(numbers) << '\n';
-    cout << "Difference between the min and max of the list: " << findMaximum(numbers) - findMinimum(numbers) << '\n';
+    printResults(numbers);
 
     return 0;
 }
