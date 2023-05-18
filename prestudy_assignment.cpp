@@ -61,15 +61,15 @@ int findMaximum(const std::vector<int> &numbers)
 }
 
 // Function to find the mode value in a vector
-std::vector<int> findMode(const std::vector<int> &numbers)
+int findMode(const std::vector<int> &numbers)
 {
-    std::vector<int> mode_values;
-    int mode_count = 0;
+    int mode_value{numbers[0]};
+    int mode_count{1};
 
-    for (unsigned int i = 0; i < numbers.size(); i++)
+    for (unsigned int i{0}; i < numbers.size(); i++)
     {
-        int numberCount = 0;
-        for (unsigned int j = 0; j < numbers.size(); j++)
+        int numberCount{0};
+        for (unsigned int j{0}; j < numbers.size(); j++)
         {
             if (numbers[j] == numbers[i])
             {
@@ -80,16 +80,11 @@ std::vector<int> findMode(const std::vector<int> &numbers)
         if (numberCount > mode_count)
         {
             mode_count = numberCount;
-            mode_values.clear();               // Clear the existing modes
-            mode_values.push_back(numbers[i]); // Add the new mode
-        }
-        else if (numberCount == mode_count)
-        {
-            mode_values.push_back(numbers[i]); // Add another mode with the same frequency
+            mode_value = numbers[i];
         }
     }
 
-    return mode_values;
+    return mode_value;
 }
 
 // Function to print the results
