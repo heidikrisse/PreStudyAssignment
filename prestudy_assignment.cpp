@@ -1,6 +1,6 @@
+#include <fstream> // for file input/output operations
 #include <iostream>
 #include <vector>
-#include <fstream> // for file input/output operations
 
 // Function to read numbers from a file and return them as a vector
 // 'filename' is a reference to a constant string object, & operator takes the address of the filename
