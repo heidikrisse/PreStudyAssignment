@@ -5,14 +5,14 @@
 // Function to read numbers from a file and return them as a vector
 // 'filename' is a reference to a constant string object, & operator takes the address of the filename
 // and can access the original string object (numbers.txt) without making a copy of it.
-std::vector<int> readNumbersFromFile(const std::string &filename, unsigned int n)
+std::vector<int> readNumbersFromFile(const std::string &filename)
 {
-    std::vector<int> numbers(n);
-
+    std::vector<int> numbers;
     std::ifstream file(filename);
-    for (unsigned int i{0}; i < n; i++)
+
+    for (int number; file >> number;)
     {
-        file >> numbers[i];
+        numbers.push_back(number);
     }
     file.close();
 
@@ -100,11 +100,7 @@ void printResults(const std::vector<int> &numbers)
 
 int main()
 {
-    std::cout << "Enter the number of integers: ";
-    unsigned int n;
-    std::cin >> n;
-
-    std::vector<int> numbers{readNumbersFromFile("numbers.txt", n)};
+    std::vector<int> numbers{readNumbersFromFile("numbers.txt")};
 
     printResults(numbers);
 
