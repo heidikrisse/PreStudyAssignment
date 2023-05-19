@@ -61,15 +61,15 @@ int findMaximum(const std::vector<int> &numbers)
 }
 
 // Function to find the mode value in a vector
-int findMode(const std::vector<int> &numbers)
+std::vector<int> findMode(const std::vector<int> &numbers)
 {
-    int mode_value{numbers[0]};
-    int mode_count{1};
+    std::vector<int> mode_values;
+    int mode_count = 0;
 
-    for (unsigned int i{0}; i < numbers.size(); i++)
+    for (unsigned int i = 0; i < numbers.size(); i++)
     {
-        int numberCount{0};
-        for (unsigned int j{0}; j < numbers.size(); j++)
+        int numberCount = 0;
+        for (unsigned int j = 0; j < numbers.size(); j++)
         {
             if (numbers[j] == numbers[i])
             {
@@ -80,11 +80,16 @@ int findMode(const std::vector<int> &numbers)
         if (numberCount > mode_count)
         {
             mode_count = numberCount;
-            mode_value = numbers[i];
+            mode_values.clear();               // Clear the existing modes
+            mode_values.push_back(numbers[i]); // Add the new mode
+        }
+        else if (numberCount == mode_count && numbers[i] != mode_values[0])
+        {
+            mode_values.push_back(numbers[i]); // Add another mode with the same frequency, only if it's different from the existing mode
         }
     }
 
-    return mode_value;
+    return mode_values;
 }
 
 // Function to print the results
@@ -94,7 +99,13 @@ void printResults(const std::vector<int> &numbers)
     std::cout << "The average of the integers in the list: " << double(calculateSum(numbers)) / numbers.size() << '\n';
     std::cout << "The minimum value in the list: " << findMinimum(numbers) << '\n';
     std::cout << "The maximum value in the list: " << findMaximum(numbers) << '\n';
-    std::cout << "The most frequent value in the list: " << findMode(numbers) << '\n';
+    std::vector<int> mode_values = findMode(numbers);
+    std::cout << "The most frequent value(s) in the list: ";
+    for (const int mode : mode_values)
+    {
+        std::cout << mode << " ";
+    }
+    std::cout << '\n';
     std::cout << "Difference between the min and max of the list: " << findMaximum(numbers) - findMinimum(numbers) << '\n';
 }
 
