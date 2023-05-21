@@ -3,20 +3,43 @@
 #include <vector>
 
 // Function to read numbers from a file and return them as a vector
-// 'filename' is a reference to a constant string object, & operator takes the address of the filename
-// and can access the original string object (numbers.txt) without making a copy of it.
-std::vector<int> readNumbersFromFile(const std::string &filename)
+std::vector<int> readNumbersFromFile()
 {
-    std::vector<int> numbers;
-    std::ifstream file(filename);
-
-    for (int number; file >> number;)
+    while (true)
     {
-        numbers.push_back(number);
-    }
-    file.close();
+        std::vector<int> numbers;
 
-    return numbers;
+        std::cout << "Enter the name of the file: ";
+        std::string filename;
+        std::cin >> filename;
+
+        if (filename.empty())
+        {
+            std::cout << "Empty filename. Please enter a valid filename.\n";
+            continue;
+        }
+
+        std::fstream file{filename};
+        if (!file)
+        {
+            std::cout << "Error opening the file. Make sure the file " << filename << " exists.\n";
+            return numbers;
+        }
+        for (int number; file >> number;)
+        {
+            numbers.push_back(number);
+        }
+        file.close();
+
+        if (numbers.empty())
+        {
+            std::cout << "There are no numbers to read from the file. Exiting...\n";
+            break;
+        }
+
+        return numbers;
+    }
+    return {};
 }
 
 // Function to calculate the sum of numbers in a vector
@@ -95,23 +118,23 @@ std::vector<int> findMode(const std::vector<int> &numbers)
 // Function to print the results
 void printResults(const std::vector<int> &numbers)
 {
-    std::cout << "The sum of the integers in the list: " << calculateSum(numbers) << '\n';
-    std::cout << "The average of the integers in the list: " << double(calculateSum(numbers)) / numbers.size() << '\n';
-    std::cout << "The minimum value in the list: " << findMinimum(numbers) << '\n';
-    std::cout << "The maximum value in the list: " << findMaximum(numbers) << '\n';
+    std::cout << "The sum of the integers in the list: " << calculateSum(numbers) << "\n";
+    std::cout << "The average of the integers in the list: " << double(calculateSum(numbers)) / numbers.size() << "\n";
+    std::cout << "The minimum value in the list: " << findMinimum(numbers) << "\n";
+    std::cout << "The maximum value in the list: " << findMaximum(numbers) << "\n";
     std::vector<int> mode_values = findMode(numbers);
     std::cout << "The most frequent value(s) in the list: ";
     for (const int mode : mode_values)
     {
         std::cout << mode << " ";
     }
-    std::cout << '\n';
-    std::cout << "Difference between the min and max of the list: " << findMaximum(numbers) - findMinimum(numbers) << '\n';
+    std::cout << "\n";
+    std::cout << "Difference between the min and max of the list: " << findMaximum(numbers) - findMinimum(numbers) << "\n";
 }
 
 int main()
 {
-    std::vector<int> numbers{readNumbersFromFile("numbers.txt")};
+    std::vector<int> numbers{readNumbersFromFile()};
 
     printResults(numbers);
 
