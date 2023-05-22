@@ -10,19 +10,19 @@ std::vector<int> readNumbersFromFile()
         std::vector<int> numbers;
 
         std::cout << "Enter the name of the file: ";
-        std::string filename;
+        std::string filename{};
         std::cin >> filename;
 
         if (filename.empty())
         {
-            std::cout << "Empty filename. Please enter a valid filename.\n";
+            std::cerr << "Empty filename. Please enter a valid filename.\n";
             continue;
         }
 
         std::fstream file{filename};
         if (!file)
         {
-            std::cout << "Error opening the file. Make sure the file " << filename << " exists.\n";
+            std::cerr << "Error opening the file. Make sure the file " << filename << " exists.\n";
             return numbers;
         }
         for (int number; file >> number;)
@@ -33,7 +33,7 @@ std::vector<int> readNumbersFromFile()
 
         if (numbers.empty())
         {
-            std::cout << "There are no numbers to read from the file. Exiting...\n";
+            std::cerr << "There are no numbers to read from the file. Exiting...\n";
             break;
         }
 
